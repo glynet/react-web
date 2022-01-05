@@ -3,13 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { Provider } from 'react-redux'
-import { createStore, combineReducers } from "redux";
-import clientReducer from "./scripts/redux/reducers/client";
-const reducers = combineReducers({
-    clientReducer
-});
-const store = createStore(reducers);
+import { store } from "./scripts/stores"
+import {Provider} from 'react-redux';
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>

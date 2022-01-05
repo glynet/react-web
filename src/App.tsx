@@ -1,66 +1,75 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from './scripts/stores/hooks'
+import { connect } from "react-redux"
+import axios from "axios";
+
 import './styles/main.scss';
-
-// import { css, cx } from '@emotion/css'
-
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    // Link
-} from "react-router-dom";
-
 import Feed from "./routes/Feed/Feed";
 import Explore from "./routes/Explore/Explore";
-
 import Header from "./components/Header/Header";
 import LeftBar from "./components/LeftBar/LeftBar";
 import RightPanel from "./components/RightPanel/RightPanel";
-import axios from "axios";
+import {
+    setID,
+    setToken,
+    setName,
+    setUsername,
+    setTheme,
+    setAvatar,
+    setColor
+} from './scripts/stores/client'
 
-let Config = {
+declare global {
+    interface Window {
+        GLOBAL_ENV: {
+            API_URL: string,
+            CDN_URL: string
+        };
+    }
+}
+
+window.GLOBAL_ENV = {
     API_URL: "http://localhost:1900/glynet.com",
     CDN_URL: "http://localhost:1900/glynet.com",
 }
 
-interface Client {
-    id: number,
-    token: number,
-    name: string,
-    username: string,
-    avatar: string,
-    color: string,
-    theme: number
-}
-
-function StartSession(): void {
-    axios
-        .get(`${Config.API_URL}/api/@me/client`)
-        .then(({data}) => {
-            console.log(data)
-        })
-        .catch(() => {
-            console.log('veri yok hüü');
-        });
-}
-
 function App() {
+    function StartSession(dispatch: any) {
+        axios
+            .get(`${window.GLOBAL_ENV.API_URL}/api/@me/client`)
+            .then(({data}) => {
+                dispatch(setID(data.id));
+                dispatch(setToken(data.token));
+                dispatch(setName(data.name));
+                dispatch(setUsername(data.username));
+                dispatch(setTheme(data.theme));
+                dispatch(setAvatar(data.avatar));
+                dispatch(setColor(data.color));
+            });
+    }
+
+    const [ isSessionStart, setSession ] = useState(false);
+
+    const state = useAppSelector(state => state)
+    const dispatch = useAppDispatch()
+
     useEffect(() => {
-        StartSession();
-    });
+        if (!isSessionStart) {
+            setSession(true)
+            StartSession(dispatch);
+        }
+    }, [isSessionStart, dispatch]);
 
     return (
-        <BrowserRouter>
+        <Router>
             <div className="app">
-
                 <div className="left">
                     <LeftBar />
                 </div>
-
                 <div className="center">
                     <div className="content">
                         <Header />
-
                         <div className="dynamic">
                             <Routes>
                                 <Route path="feed" element={<Feed />} />
@@ -69,14 +78,12 @@ function App() {
                         </div>
                     </div>
                 </div>
-
                 <div className="right">
                     <RightPanel />
                 </div>
-
             </div>
-        </BrowserRouter>
+        </Router>
     );
 }
 
-export default App;
+export default connect()(App);

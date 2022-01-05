@@ -1,11 +1,7 @@
-import { VerifiedBadge, SearchIcon, TrendingUpIcon, ArrowDownIcon, ArrowUpIcon } from "../../scripts/icons";
+import {VerifiedBadge, SearchIcon, TrendingUpIcon, ArrowDownIcon, ArrowUpIcon} from "../../scripts/icons";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-
-let Config = {
-    API_URL: "http://localhost:1900/glynet.com",
-    CDN_URL: "http://localhost:1900/glynet.com",
-}
+import {useState, useEffect} from 'react';
+import {useAppSelector} from "../../scripts/stores/hooks";
 
 interface Trend {
     icon: number,
@@ -23,6 +19,8 @@ interface Contact {
 }
 
 function RightPanel() {
+    const state = useAppSelector(state => state)
+
     const [isTrendsFetched, setTrendsFetched] = useState(false);
     const [trends, setTrends] = useState([]);
     const [dropdownStatus, setDropdownStatus] = useState(false);
@@ -33,7 +31,7 @@ function RightPanel() {
     useEffect(() => {
         if (!isTrendsFetched) {
             axios
-                .get(`${Config.API_URL}/api/@me/trends`)
+                .get(`${window.GLOBAL_ENV.API_URL}/api/@me/trends`)
                 .then(({data}) => {
                     setTrendsFetched(true);
                     setTrends(data.trends);
@@ -46,7 +44,7 @@ function RightPanel() {
 
         if (!isContactsFetched) {
             axios
-                .get(`${Config.API_URL}/api/@me/suggested_contacts`)
+                .get(`${window.GLOBAL_ENV.API_URL}/api/@me/suggested_contacts`)
                 .then(({data}) => {
                     setContactsFetched(true);
                     setContacts(data);
@@ -69,7 +67,7 @@ function RightPanel() {
                         <div className="user">
                             <div className="details">
                                 <div className="profile-picture">
-                                    <img src="" alt="" />
+                                    <img src={window.GLOBAL_ENV.CDN_URL + '/' + state.client.avatar} alt="" />
                                 </div>
                             </div>
                         </div>
@@ -139,7 +137,7 @@ function RightPanel() {
                                 return (
                                     <div className="contact" key={i}>
                                         <div className="avatar">
-                                            <img src={Config.CDN_URL + '/' + user.avatar} alt="" />
+                                            <img src={window.GLOBAL_ENV.CDN_URL + '/' + user.avatar} alt="" />
                                         </div>
                                         <div className="details">
                                             <div className="name">

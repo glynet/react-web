@@ -60,23 +60,21 @@ function LeftBar() {
 
     return (
         <div className="menu">
-            {
-                menuItems.map((item, i: number) => {
-                    return (
-                        <Link
-                            to={item.path}
-                            onClick={() => { setTab(item.path) }}
-                            className="menu-item"
-                            data-selected={tab === item.path}
-                            key={i}
-                        >
-                            <div className="icon">
-                                {item.icon()}
-                            </div>
-                        </Link>
-                    )
-                })
-            }
+            {menuItems.map((item, i: number) => {
+                return (
+                    <Link
+                        to={item.path}
+                        onClick={() => { setTab(item.path) }}
+                        className="menu-item"
+                        data-selected={tab === item.path}
+                        key={i}
+                    >
+                        <div className="icon">
+                            {item.icon()}
+                        </div>
+                    </Link>
+                )
+            })}
         </div>
     )
 }
