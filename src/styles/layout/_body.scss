@@ -1,0 +1,35 @@
+:root {
+    --app-color: #2fe0b7;
+    --app-color-x1: #16c79e;
+    --app-color-s1: #aeffff;
+    --app-color-trans: rgba(47,224,183,0.5);
+}
+
+#root {
+    position: relative;
+    background-color: #f0f2f5;
+    overflow: hidden;
+    height: 100vh;
+
+    line-height: 24px;
+
+    .app {
+        display: flex;
+        font-size: 19px;
+
+        @import "left";
+
+        @import "center";
+
+        @import "right";
+    }
+
+    @import "../components/others";
+
+    @import "../components/modals";
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

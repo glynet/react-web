@@ -1,0 +1,115 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+@import "../themes/light";
+@import "../themes/dark";
+@import "../themes/purple";
+
+:root {
+    --desktop-right-menu-width: 390px;
+    @each $name, $value in $variables-light {
+        --#{$name}: #{$value};
+    }
+
+    @for $i from 10 through 40 {
+        --font-size-#{$i}px: #{$i}px;
+    }
+}
+
+.theme-dark:root {
+    @each $name, $value in $variables-dark {
+        --#{$name}: #{$value};
+    }
+}
+
+.theme-purple:root {
+    @each $name, $value in $variables-purple {
+        --#{$name}: #{$value};
+    }
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(104, 109, 104, 0.27);
+    border-radius: 50px;
+
+    &:hover {
+        background: rgba(131, 137, 134, 0.67);
+    }
+}
+
+img,
+video {
+    object-fit: cover;
+}
+
+right-panel,
+new-details {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+.clipboard {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.dynamic-right-panel {
+    padding-top: 15px;
+    display: none;
+}
+
+[data-title] {
+    position: relative;
+    cursor: pointer;
+    @include font('14px', 'Gilroy-Bold');
+
+    &:hover::before {
+        position: absolute;
+        display: inline-block;
+        bottom: -30px;
+        left: 0;
+        z-index: 99999;
+        content: attr(data-title);
+        padding: 5px 12px;
+        border-radius: 5px;
+        background: var(--title-bg);
+        color: var(--title-color);
+        white-space: nowrap;
+        transition: .1s;
+        @include animation('hoverTitle .1s');
+    }
+}
+
+//noinspection CssUnknownProperty
+*,
+input,
+label {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    scrollbar-width: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+}
+
+img,
+video {
+    object-fit: cover;
+}

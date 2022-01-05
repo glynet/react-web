@@ -1,0 +1,56 @@
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+@function pixels-to-percent($target, $parent: 16) {
+    @return percentage($target / $parent);
+}
+
+@mixin alphaColor($alpha, $color, $element) {
+    #{$element}: rgba(red($color), green($color), blue($color), $alpha);
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    //noinspection CssUnknownProperty
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin font($size, $family) {
+    /* font-size: var(--font-size-#{$size}); */
+    font-size: #{$size};
+    font-family: #{$family}, Arial, sans-serif;
+    font-variant: normal;
+}
+
+@mixin prefix($property, $value) {
+    @each $prefix in (webkit, moz, ms, o) {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+    #{$property}: $value;
+}

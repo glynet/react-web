@@ -1,0 +1,141 @@
+@import "../../styles/abstracts/mixins";
+
+.center {
+    padding: 15px;
+    width: calc(100% - var(--desktop-right-menu-width) - 103px);
+
+    .header {
+        background-color: #fff;
+        border-radius: 18px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-height: 78px;
+
+        .hdr-logo {
+            .logo {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                transition: .1s;
+
+                svg {
+                    height: 25px;
+                    fill: var(--app-color);
+                }
+
+                //noinspection CssInvalidPropertyValue
+                &::after {
+                    content: "glynet";
+                    @include font('25px', 'Gilroy-Bold');
+                    margin-left: 2px;
+                    font-weight: bold;
+                    background-image: linear-gradient(45deg, var(--app-color), var(--app-color-x1));
+                    transition: .2s;
+                    color: transparent;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    user-select: none;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .hdr-right {
+            display: flex;
+            align-items: center;
+
+            .hdr-btn {
+                border-radius: 100%;
+                padding: 12px;
+                transition: .1s;
+                cursor: pointer;
+                height: 48px;
+                width: 48px;
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        fill: var(--grey);
+                        display: flex;
+                        align-items: center;
+                        height: 24px;
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--i-hover);
+                }
+
+                &:active {
+                    transform: scale(0.9);
+                }
+            }
+
+            .search-container {
+                background: var(--search-input-bg);
+                border-radius: 30px;
+                border: 3px solid var(--search-input-bg);
+                padding: 6.5px 13px 9px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                transition: border .1s;
+                margin-left: 10px;
+                z-index: 5;
+                position: relative;
+
+                height: 50px;
+
+                .area input {
+                    background: transparent;
+                    border: none;
+                    outline: none;
+
+                    font-size: 17px;
+                    font-family: Gilroy-Bold,Arial,sans-serif;
+
+                    font-variant: normal;
+                    color: var(--grey);
+                    width: 300px;
+
+                    &::placeholder {
+                        opacity: 1;
+                    }
+                }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+
+                    svg {
+                        height: 23px;
+                        fill: var(--grey);
+                    }
+                }
+
+                &:focus-within {
+                    border: 3px solid var(--search-input-bg-focus)
+                }
+            }
+        }
+    }
+
+    .dynamic {
+        --main-width: 1250px;
+        max-width: 1250px;
+        width: 100%;
+        position: relative;
+
+        margin: 15px auto;
+        border-radius: 15px;
+        overflow-y: auto;
+        height: calc(100vh - 108px);
+    }
+}

@@ -1,0 +1,29 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+.others {
+    .bottom-alert {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: -70px;
+        width: 100%;
+        z-index: 99999;
+        left: 0;
+        transition: 300ms;
+
+        .b-alert-content {
+            padding: 20px 25px;
+            border-radius: 15px;
+            width: max-content;
+            background: linear-gradient(45deg, var(--app-color-x1), var(--app-color));
+            box-shadow: 0 0 10px 0 #0000003d;
+
+            span {
+                user-select: text;
+                color: #fff;
+                @include font('20px', 'Gilroy-Bold');
+            }
+        }
+    }
+}
