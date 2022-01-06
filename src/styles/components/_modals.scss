@@ -17,21 +17,21 @@
     align-items: center;
     justify-content: center;
 
-    .modal-content[fill] {
+    .modal-content[data-fill="true"] {
         width: 100% !important;
     }
 
-    .modal-content[full-screen] {
+    .modal-content[data-full-screen="true"] {
         max-width: calc(100% - 30px) !important;
     }
 
     //noinspection ALL
-    .modal-content[auto] {
+    .modal-content[data-auto="true"] {
         max-width: fit-content;
         max-width: -moz-fit-content;
     }
 
-    .modal-content[no-background] {
+    .modal-content[data-no-background="true"] {
         background: transparent !important;
     }
 

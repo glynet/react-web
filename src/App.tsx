@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from './scripts/stores/hooks'
 import { connect } from "react-redux"
 import axios from "axios";
 
-import './styles/main.scss';
 import Feed from "./routes/Feed/Feed";
 import Explore from "./routes/Explore/Explore";
 import Header from "./components/Header/Header";
 import LeftBar from "./components/LeftBar/LeftBar";
 import RightPanel from "./components/RightPanel/RightPanel";
+import LikeModal from "./components/Modals/Likes/Likes";
+
 import {
     setID,
     setToken,
@@ -20,19 +21,7 @@ import {
     setColor
 } from './scripts/stores/client'
 
-declare global {
-    interface Window {
-        GLOBAL_ENV: {
-            API_URL: string,
-            CDN_URL: string
-        };
-    }
-}
-
-window.GLOBAL_ENV = {
-    API_URL: "http://localhost:1900/glynet.com",
-    CDN_URL: "http://localhost:1900/glynet.com",
-}
+import './styles/main.scss';
 
 function App() {
     function StartSession(dispatch: any) {
@@ -81,6 +70,20 @@ function App() {
                 <div className="right">
                     <RightPanel />
                 </div>
+            </div>
+            <div className="others">
+                <div className="bottom-alert">
+                    <div className="b-alert-content">
+                        <span>glynet.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal-area">
+                <LikeModal
+                    id={state.modals.likes.id}
+                    display={state.modals.likes.display}
+                />
             </div>
         </Router>
     );

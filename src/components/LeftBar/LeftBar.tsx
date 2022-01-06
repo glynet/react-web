@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const menuItems = [
     {
-        "path": "feed",
+        "path": "Feed",
         "title": "Ana sayfa",
         "icon": Icon.FeedIcon
     },
     {
-        "path": "explore",
+        "path": "Explore",
         "title": "Keşfet",
         "icon": Icon.ExploreIcon
     },
@@ -56,7 +56,7 @@ const menuItems = [
 ];
 
 function LeftBar() {
-    const [tab, setTab] = useState('feed');
+    const [tab, setTab] = useState('Feed');
 
     return (
         <div className="menu">
