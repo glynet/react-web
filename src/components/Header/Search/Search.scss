@@ -1,0 +1,95 @@
+@import "../../../styles/abstracts/mixins";
+@import "../../../styles/abstracts/variables";
+
+.header-dropdowns {
+    .search-dropdown {
+        display: none;
+        position: absolute;
+        z-index: 3;
+        top: 20px;
+        right: calc(var(--desktop-right-menu-width) + 28px);
+        @include animation('search-dropdown-show .3s');
+
+        .search-container {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            width: 380px;
+            box-shadow: 0 0 10px 0 var(--dropdown-shadow);
+
+            .search-block {
+                height: 70px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .search-content {
+                padding: 0 13px 13px 13px;
+                max-height: 80vh;
+                overflow-y: scroll;
+
+                .search-result-selected {
+                    background: var(--i-hover);
+                }
+
+                .search-result-other {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: .1s transform;
+                    border-radius: 30px;
+                    margin-top: 13px;
+
+                    .icon[data-svg] {
+                        padding: 12px;
+                    }
+
+                    .icon {
+                        display: flex;
+                        align-items: center;
+                        background: var(--i-selected);
+                        border-radius: 100%;
+
+                        img {
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 100%;
+                            pointer-events: none;
+                        }
+
+                        svg {
+                            fill: var(--grey);
+                            height: 25px;
+                        }
+                    }
+
+                    .text {
+                        margin-left: 10px;
+
+                        span {
+                            display: flex;
+                            flex-direction: column;
+
+                            &:nth-child(1) {
+                                color: var(--grey);
+                                @include font('19px', 'Gilroy-Bold');
+                            }
+
+                            &:nth-child(2) {
+                                margin-top: -3px;
+                                color: var(--grey);
+                                @include font('16px', 'Gilroy-Medium');
+                            }
+                        }
+                    }
+
+                    &:active {
+                        transform: scale(0.95);
+                    }
+
+                    &:hover {
+                        background: var(--i-hover);
+                    }
+                }
+            }
+        }
+    }
+}

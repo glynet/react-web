@@ -42,3 +42,12 @@ export const bottomAlert = (text: string) => {
         alertBox.style.transformStyle = "scale(0.50)";
     }, 5000);
 }
+
+export const addDots = (string: string, limit: number) => {
+    let dots = "...";
+
+    if (string.length > limit)
+        string = string.substring(0, limit) + dots;
+
+    return string;
+}

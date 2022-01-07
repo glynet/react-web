@@ -11,9 +11,9 @@ interface Trend {
 }
 
 function Trends() {
-    const [isTrendsFetched, setTrendsFetched] = useState(false);
-    const [trends, setTrends] = useState([]);
-    const [dropdownStatus, setDropdownStatus] = useState(false);
+    const [ isTrendsFetched, setTrendsFetched ] = useState(false);
+    const [ trends, setTrends ] = useState([]);
+    const [ dropdownStatus, setDropdownStatus ] = useState(false);
 
     useEffect(() => {
         if (!isTrendsFetched) {

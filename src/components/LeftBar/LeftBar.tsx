@@ -32,7 +32,7 @@ const menuItems = [
     },
     {
         "path": "create_post",
-        "title": "Gönderi oluştur aa",
+        "title": "Gönderi oluştur",
         "icon": Icon.PlusIcon
     },
     {

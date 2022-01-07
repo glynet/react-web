@@ -123,4 +123,14 @@
             }
         }
     }
+
+    .header-dropdowns {
+        .dropdown-hide {
+            @include animation('dropdown-hide .3s');
+        }
+
+        .search-dropdown-hide {
+            @include animation('search-dropdown-hide .3s');
+        }
+    }
 }

@@ -1,0 +1,217 @@
+@import "../../../styles/abstracts/mixins";
+@import "../../../styles/abstracts/variables";
+
+.header-dropdowns {
+    .notifications-dropdown {
+        display: none;
+        position: absolute;
+        z-index: 99999;
+        top: 70px;
+        right: calc(var(--desktop-right-menu-width) + 65px);
+        @include animation('dropdown-show .3s');
+
+        .notifications-container {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            width: 390px;
+            box-shadow: 0 0 10px 0 var(--dropdown-shadow);
+
+            .notifications-content {
+                .title {
+                    color: var(--grey);
+                    padding: 15px;
+                    border-bottom: 1px solid var(--border-color);
+                    @include font('20px', 'Gilroy-Bold');
+                }
+
+                .content {
+                    max-height: 63vh;
+                    overflow-y: auto;
+                    padding: 7.5px;
+
+                    .follow-requests,
+                    .item {
+                        padding: 7.5px;
+                        display: flex;
+                        border-radius: 8px;
+                        transition: all 0.2s;
+                        cursor: pointer;
+
+                        .avatar,
+                        .avatar img,
+                        .icon {
+                            --height: 50px;
+
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            height: var(--height);
+                            width: var(--height);
+
+                            background-color: var(--i-selected);
+
+                            border-radius: 100%;
+                            pointer-events: none;
+                        }
+
+                        .text,
+                        .details {
+                            margin-left: 9px;
+                        }
+
+                        &:active {
+                            transform: scale(0.95);
+                        }
+
+                        &:hover {
+                            background: var(--i-hover);
+                        }
+                    }
+
+                    .follow-requests {
+                        display: flex;
+                        align-items: center;
+
+                        .icon svg {
+                            height: 30px;
+                        }
+
+                        .text {
+                            display: flex;
+                            flex-direction: column;
+
+                            span {
+                                color: var(--grey);
+
+                                &:nth-child(1) {
+                                    @include font('18px', 'Gilroy-Bold');
+                                }
+
+                                &:nth-child(2) {
+                                    @include font('15px', 'Gilroy-Medium');
+                                }
+                            }
+                        }
+                    }
+
+                    .item {
+                        .details {
+                            width: 100%;
+
+                            .author span {
+                                color: var(--grey);
+                                @include font('17px', 'Gilroy-Bold');
+                            }
+
+                            .notification-content {
+                                span {
+                                    color: var(--grey);
+                                    @include font('16px', 'Gilroy-Medium');
+                                }
+
+                                .embed-container {
+                                    border: 1px solid var(--border-color);
+                                    border-radius: 10px;
+                                    //padding: 15px;
+                                    margin: 6px 0;
+
+                                    .post {
+                                        .post-content {
+                                            --image-height: 140px;
+                                            height: var(--image-height);
+
+                                            img,
+                                            video {
+                                                width: 100%;
+                                                border-radius: 10px;
+                                                height: var(--image-height);
+                                                background-color: var(--app-color);
+                                            }
+                                        }
+
+                                        .post-text {
+                                            --padding: 9px;
+                                            padding: var(--padding);
+
+                                            .post-author {
+                                                display: flex;
+                                                align-items: center;
+                                                margin-top: calc(var(--padding) / 2 - 2px);
+
+                                                &:nth-child(1) {
+                                                    margin-top: 0 !important;
+                                                }
+
+                                                .arrow {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    margin-left: 1px;
+
+                                                    svg {
+                                                        fill: var(--grey);
+                                                        height: 21px;
+                                                    }
+                                                }
+
+                                                .author {
+                                                    margin-left: 5px;
+
+                                                    span {
+                                                        &:nth-child(1) {
+                                                            @include font('17px', 'Gilroy-Bold');
+                                                        }
+
+                                                        &:nth-child(2) {
+                                                            @include font('17px', 'Gilroy-Medium');
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .date span {
+                                color: grey;
+                                @include font('14px', 'Gilroy-Medium');
+                            }
+                        }
+                    }
+                }
+
+                .empty {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    padding: 30px;
+
+                    .icon {
+                        svg {
+                            height: 70px;
+                        }
+                    }
+
+                    .text {
+                        margin-top: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+
+                        .top span {
+                            color: var(--grey);
+                            @include font('20px', 'Gilroy-Bold');
+                        }
+
+                        .desc span {
+                            color: var(--grey);
+                            @include font('18px', 'Gilroy-Medium');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
