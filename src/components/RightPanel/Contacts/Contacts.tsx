@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import {VerifiedBadge} from "../../../scripts/icons";
+import { VerifiedBadge } from "../../../scripts/icons";
+import "./Contacts.scss";
 
 interface Contact {
     id: number,

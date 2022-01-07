@@ -1,6 +1,7 @@
 import { ArrowDownIcon, ArrowUpIcon, SearchIcon, TrendingUpIcon } from "../../../scripts/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./Trends.scss";
 
 interface Trend {
     icon: number,

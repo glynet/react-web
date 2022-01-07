@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../../scripts/stores/hooks";
+import "./UserHeader.scss";
 
 function UserHeader() {
     const state = useAppSelector(state => state)

@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
-import {Hiking} from "../../../scripts/assets";
 import axios from "axios";
-import {useAppDispatch, useAppSelector} from "../../../scripts/stores/hooks";
-import {setLikes} from "../../../scripts/stores/modals";
+import { useEffect, useState } from "react";
+import { Hiking } from "../../../scripts/assets";
+import { useAppDispatch, useAppSelector } from "../../../scripts/stores/hooks";
+import { setLikes } from "../../../scripts/stores/modals";
+import "../Modals.scss";
 
 interface Likes {
     id: number,
@@ -57,7 +58,7 @@ function Likes({ id, display }: Likes) {
             id="post-likes"
             className="modal"
             style={{
-                display: (display ? 'flex' : 'none')
+                display: (display ? 'flex' : 'flex')
             }}
             onClick={exitModal}
         >

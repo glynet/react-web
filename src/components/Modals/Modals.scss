@@ -1,5 +1,5 @@
-@import "../abstracts/variables";
-@import "../abstracts/mixins";
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
 
 .modal[dark-screen] {
     background: #000000b3 !important;

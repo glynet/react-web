@@ -17,16 +17,10 @@
         display: flex;
         font-size: 19px;
 
-        @import "left";
-
         @import "center";
-
-        @import "right";
     }
 
     @import "../components/others";
-
-    @import "../components/modals";
 }
 
 body {

@@ -1,0 +1,65 @@
+@import "../../../styles/abstracts/mixins";
+
+.details {
+    .suggested-contacts {
+        display: flex;
+        flex-direction: column;
+        padding: 0 12px 12px 12px;
+        margin-top: -5px;
+
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 15px;
+            transition: .1s;
+            cursor: pointer;
+
+            .avatar,
+            .avatar img {
+                height: 50px;
+                width: 50px;
+                border-radius: 100%;
+            }
+
+            .details {
+                display: flex;
+                flex-direction: column;
+                margin-left: 10px;
+
+                .name {
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        @include font('19px', 'Gilroy-Bold');
+                        font-variant: normal;
+                        color: var(--grey);
+                    }
+
+                    svg {
+                        margin-left: 5px;
+                        height: 19px;
+                        fill: var(--grey);
+                    }
+                }
+
+                .username {
+                    span {
+                        @include font('17px', 'Gilroy-Medium');
+                        font-variant: normal;
+                        color: var(--grey);
+                    }
+                }
+            }
+
+            &:hover {
+                background: var(--i-hover);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+}

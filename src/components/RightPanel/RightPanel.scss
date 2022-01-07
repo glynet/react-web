@@ -1,0 +1,42 @@
+@import "../../styles/abstracts/mixins";
+
+.fixed-right {
+    background: var(--right-panel-bg);
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    border-radius: 15px 0 0 15px;
+    width: var(--desktop-right-menu-width);
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .details {
+        .box {
+            background: var(--right-panel-box);
+            border-radius: 18px;
+            width: 100%;
+            margin-top: 15px;
+            overflow: auto;
+
+            .title {
+                padding: 20px 20px 10px 20px;
+
+                span {
+                    @include font('23px', 'Gilroy-Bold');
+                    font-variant: normal;
+                    color: var(--grey);
+                }
+            }
+
+            .content {
+                color: var(--grey);
+            }
+
+            &:nth-child(1) {
+                margin-top: 0;
+            }
+        }
+    }
+}

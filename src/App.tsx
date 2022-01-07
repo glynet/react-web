@@ -61,6 +61,7 @@ function App() {
                         <Header />
                         <div className="dynamic">
                             <Routes>
+                                <Route path="" element={<Feed />} />
                                 <Route path="feed" element={<Feed />} />
                                 <Route path="explore" element={<Explore />} />
                             </Routes>

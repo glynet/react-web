@@ -1,6 +1,7 @@
 import * as Icon from '../../scripts/icons';
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import "./LeftBar.scss";
 
 const menuItems = [
     {

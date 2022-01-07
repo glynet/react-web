@@ -1,4 +1,5 @@
 import { SearchIcon, PremiumIcon, MoonIcon, BellIcon, AttachmentIcon } from '../../scripts/icons';
+import "./Header.scss"
 
 function Header() {
     return (
