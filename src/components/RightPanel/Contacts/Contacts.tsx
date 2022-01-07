@@ -49,7 +49,7 @@ function Contacts() {
                                         {user.isVerified && <div className="verified"><VerifiedBadge /></div>}
                                     </div>
                                     <div className="username">
-                                        <span>{user.username}</span>
+                                        <span>@{user.username}</span>
                                     </div>
                                 </div>
                             </div>

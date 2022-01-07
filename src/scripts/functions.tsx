@@ -14,6 +14,14 @@ export function hexToRgb(hex: string, alpha: number = 1) {
     return `rgba(${r},${g},${b},${alpha})`;
 }
 
+export function capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const changeTitle = (title: string) => document.title = title;
+
+export const setProperty = (key: string, value: string) => document.documentElement.style.setProperty(key, value);
+
 export const select = (name: string) => window.document.querySelector(name) as HTMLElement;
 
 export const selectAll = (name: string) => window.document.querySelectorAll<HTMLElement>(name);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 import { PlusIcon, ArrowRightIcon } from "../../../scripts/icons";
 import { useAppSelector } from "../../../scripts/stores/hooks";
@@ -58,6 +58,7 @@ function Stories() {
     useEffect(() => {
         if (!isFetched) {
             setFetched(true);
+
             axios
                 .get(`${window.GLOBAL_ENV.API_URL}/api/@me/stories/collect`)
                 .then(({data}) => {

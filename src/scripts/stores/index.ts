@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import clientReducer from "./client"
 import modalsReducer from "./modals"
+import tabsReducer from "./tab"
 
 export const store = configureStore({
     reducer: {
         client: clientReducer,
-        modals: modalsReducer
+        modals: modalsReducer,
+        tab: tabsReducer
     },
 })
 

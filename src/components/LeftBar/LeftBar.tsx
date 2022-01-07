@@ -1,16 +1,17 @@
 import * as Icon from '../../scripts/icons';
-import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../scripts/stores/hooks";
+import { setTab } from "../../scripts/stores/tab";
 import "./LeftBar.scss";
 
 const menuItems = [
     {
-        "path": "Feed",
+        "path": "feed",
         "title": "Ana sayfa",
         "icon": Icon.FeedIcon
     },
     {
-        "path": "Explore",
+        "path": "explore",
         "title": "Keşfet",
         "icon": Icon.ExploreIcon
     },
@@ -31,7 +32,7 @@ const menuItems = [
     },
     {
         "path": "create_post",
-        "title": "Gönderi oluştur",
+        "title": "Gönderi oluştur aa",
         "icon": Icon.PlusIcon
     },
     {
@@ -57,7 +58,13 @@ const menuItems = [
 ];
 
 function LeftBar() {
-    const [tab, setTab] = useState('Feed');
+    const state = useAppSelector(state => state)
+    const dispatch = useAppDispatch()
+
+    if (state.tab.name.length === 0) {
+        const pathname = window.location.pathname.replace('/', '');
+        dispatch(setTab((pathname.length === 0 ? 'feed' : pathname)));
+    }
 
     return (
         <div className="menu">
@@ -65,9 +72,11 @@ function LeftBar() {
                 return (
                     <Link
                         to={item.path}
-                        onClick={() => { setTab(item.path) }}
+                        onClick={() => {
+                            dispatch(setTab(item.path))
+                        }}
                         className="menu-item"
-                        data-selected={tab === item.path}
+                        data-selected={state.tab.name === item.path}
                         key={i}
                     >
                         <div className="icon">

@@ -14,7 +14,7 @@ export const client = createSlice({
         username: 'an_user',
         avatar: 'img/avatar.png',
         theme: 1,
-        color: '#85cfff'
+        color: '#23d9d6'
     },
     reducers: {
         setID: (state, action) => {
