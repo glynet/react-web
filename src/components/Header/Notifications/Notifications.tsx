@@ -20,7 +20,6 @@ function Notifications() {
             axios
                 .get(`${window.GLOBAL_ENV.API_URL}/api/@me/notifications`)
                 .then(({data}) => {
-                    console.log(data)
                     setData(data);
                     setNotifications(data.notifications);
                 })

@@ -1,6 +1,6 @@
-# Glynet Web Application
+# Glynet Web
 
-*Glynet'in, React ile geliştirilmiş tarayıcı uygulaması*
+*Glynet'in, React ile geliştirilmiş tarayıcı uygulaması.*
 
 ## Üstünden geçmek gerekirse
 

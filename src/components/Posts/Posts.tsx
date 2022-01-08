@@ -99,23 +99,6 @@ function Posts({ type, query, filters }: Posts) {
                     setPosts(data.posts)
                 });
         }
-
-        function handleClickMenuOutside(e: any) {
-            selectAll('.post-more-dropdown').forEach(menu => {
-                if (!menu.contains(e.target)) {
-                    if (menu.style.display === 'flex') {
-                        menu.classList.add('post-more-dropdown-hide');
-
-                        setTimeout(() => {
-                            menu.classList.remove('post-more-dropdown-hide');
-                            menu.style.display = 'none';
-                        }, 290);
-                    }
-                }
-            });
-        }
-
-        document.addEventListener("click", handleClickMenuOutside)
     }, []);
 
     function like(id: number) {

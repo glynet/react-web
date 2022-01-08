@@ -3,14 +3,23 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from './scripts/stores/hooks'
 import { connect } from "react-redux"
 import { setID, setToken, setName, setUsername, setTheme, setAvatar, setColor } from './scripts/stores/client'
-import { capitalizeFirstLetter, colorBrightness, hexToRgb, changeTitle, setProperty } from "./scripts/functions";
+import {
+    capitalizeFirstLetter,
+    colorBrightness,
+    hexToRgb,
+    changeTitle,
+    setProperty,
+    selectAll
+} from "./scripts/functions";
 import axios from "axios";
+
 import Feed from "./routes/Feed/Feed";
 import Explore from "./routes/Explore/Explore";
 import Header from "./components/Header/Header";
 import LeftBar from "./components/LeftBar/LeftBar";
 import RightPanel from "./components/RightPanel/RightPanel";
 import LikeModal from "./components/Modals/Likes/Likes";
+
 import './styles/main.scss';
 
 function App() {
@@ -39,6 +48,35 @@ function App() {
         if (!isSessionStart) {
             StartSession(dispatch);
         }
+
+        function handleClickMenuOutside(e: any) {
+            selectAll('.post-more-dropdown').forEach(menu => {
+                if (!menu.contains(e.target)) {
+                    if (menu.style.display === 'flex') {
+                        menu.classList.add('post-more-dropdown-hide');
+
+                        setTimeout(() => {
+                            menu.classList.remove('post-more-dropdown-hide');
+                            menu.style.display = 'none';
+                        }, 290);
+                    }
+                }
+            });
+
+            selectAll('.dropdown-container').forEach(menu => {
+                if (!menu.contains(e.target) && menu.style.display == 'flex') {
+                    let hideAnimation = (menu.classList.contains('search-dropdown') ? 'search-' : '') + 'dropdown-hide';
+                    menu.classList.add(hideAnimation);
+
+                    setTimeout(() => {
+                        menu.classList.remove(hideAnimation);
+                        menu.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        document.addEventListener("click", handleClickMenuOutside)
     }, [isSessionStart, dispatch]);
 
     changeTitle(`${capitalizeFirstLetter(state.tab.name)} | Glynet`);
