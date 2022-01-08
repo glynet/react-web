@@ -1,0 +1,28 @@
+@import "../../../../styles/abstracts/mixins";
+
+.notifications-content {
+    .content {
+        .item {
+            .details {
+                width: 100%;
+
+                .author span {
+                    color: var(--grey);
+                    @include font('17px', 'Gilroy-Bold');
+                }
+
+                .notification-content {
+                    span {
+                        color: var(--grey);
+                        @include font('16px', 'Gilroy-Medium');
+                    }
+                }
+
+                .date span {
+                    color: grey;
+                    @include font('14px', 'Gilroy-Medium');
+                }
+            }
+        }
+    }
+}

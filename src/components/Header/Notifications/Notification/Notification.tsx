@@ -1,66 +1,12 @@
-import { addDots } from "../../../../scripts/functions";
 import { useAppSelector } from "../../../../scripts/stores/hooks";
 import Embed from "./Embed/Embed";
+import "./Notification.scss";
 
 function Notification({ item }: any) {
     const state = useAppSelector(state => state);
 
     let text: any;
     let embed: any;
-
-    function createNotificationEmbed(obj: any) {
-        let member_content: any;
-        let post_content: any;
-
-        if ((obj.banner !== undefined ? (obj.banner.url !== undefined) : false))
-            post_content = `
-                                            <div class="post-content">
-                                                ${
-                obj?.banner.url == '' ?
-                    '' :
-                    obj?.banner.type == 'image' ?
-                        `<img src="${window.GLOBAL_ENV.CDN_URL}/${obj?.banner.url}" alt="">` :
-                        `<video src="${window.GLOBAL_ENV.CDN_URL}/${obj?.banner.url}" autoplay loop muted></video>`
-            }
-                                            </div>
-                                        `;
-
-        if ((obj.member !== undefined ? (obj.member.username !== undefined) : false))
-            member_content = `
-                                            <div class="post-author">
-                                                <div class="arrow">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g data-name="Layer 2"><g data-name="corner-down-right"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M19.78 12.38l-4-5a1 1 0 0 0-1.56 1.24l2.7 3.38H8a1 1 0 0 1-1-1V6a1 1 0 0 0-2 0v5a3 3 0 0 0 3 3h8.92l-2.7 3.38a1 1 0 0 0 .16 1.4A1 1 0 0 0 15 19a1 1 0 0 0 .78-.38l4-5a1 1 0 0 0 0-1.24z"/></g></g></svg>
-                                                </div>
-                                                <div class="author">
-                                                    <span>${obj?.member.username}</span>
-                                                    <span>${addDots(obj?.member.text, 16)}</span>
-                                                </div>
-                                            </div>
-                                        `;
-
-        return `
-                                        <div class="embed-container">
-                                            <div class="post">
-                                                ${post_content !== undefined ? post_content : ''}
-                                                <div class="post-text">
-                                                    ${
-            obj?.author.text == '' && (obj.member !== undefined && obj?.member?.username !== '') ?
-                '' :
-                `
-                                                    <div class="post-author">
-                                                        <div class="author">
-                                                            <span>${obj?.author.username}</span>
-                                                            <span>${addDots(obj?.author.text, 16)}</span>
-                                                        </div>
-                                                    </div>
-                                                    `
-        }
-                                                    ${member_content !== undefined ? member_content : ''}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    `;
-    }
 
     switch (item.details.type) {
         case 'like':
@@ -76,7 +22,7 @@ function Notification({ item }: any) {
                     break;
             }
 
-            embed = createNotificationEmbed({
+            embed = <Embed obj={{
                 banner: {
                     url: item?.details?.extend?.details?.content?.url,
                     type: item?.details?.extend?.details?.content?.type,
@@ -85,7 +31,7 @@ function Notification({ item }: any) {
                     username: state.client.username,
                     text: item?.details?.extend?.details?.text
                 }
-            });
+            }} />
             break;
 
         case 'mention':
@@ -101,16 +47,16 @@ function Notification({ item }: any) {
                     break;
             }
 
-            embed = createNotificationEmbed({
+            embed = <Embed obj={{
                 banner: {
                     url: item?.details?.extend?.details?.content?.url,
                     type: item?.details?.extend?.details?.content?.type,
                 },
                 author: {
-                    username: item?.from?.username,
+                    username: state.client.username,
                     text: item?.details?.extend?.details?.text
                 }
-            });
+            }} />
             break;
 
         case 'quote':
@@ -120,7 +66,7 @@ function Notification({ item }: any) {
         case 'new-post':
             text = 'Yeni bir gönderi paylaştı';
 
-            embed = createNotificationEmbed({
+            embed = <Embed obj={{
                 banner: {
                     url: item?.details?.extend?.details?.content?.url,
                     type: item?.details?.extend?.details?.content?.type,
@@ -129,13 +75,13 @@ function Notification({ item }: any) {
                     username: item?.from?.username,
                     text: item?.details?.extend?.details?.text
                 }
-            });
+            }} />
             break;
 
         case 'reply-comment':
             text = 'Yorumunuza yanıt verdi';
 
-            embed = createNotificationEmbed({
+            embed = <Embed obj={{
                 author: {
                     username: state.client.username,
                     text: item['details']['extend']['comment']['text']
@@ -144,13 +90,13 @@ function Notification({ item }: any) {
                     username: item['from']['username'],
                     text: item['details']['extend']['reply']['text']
                 }
-            });
+            }} />
             break;
 
         case 'comment':
             text = 'Gönderinize bir yorum bıraktı';
 
-            embed = createNotificationEmbed({
+            embed = <Embed obj={{
                 banner: {
                     url: item['details']['extend']['post']['content']['url'],
                     type: item['details']['extend']['post']['content']['type']
@@ -163,7 +109,7 @@ function Notification({ item }: any) {
                     username: item['from']['username'],
                     text: item['details']['extend']['comment']['text']
                 }
-            });
+            }} />
             break;
 
         case 'invite':
@@ -176,6 +122,10 @@ function Notification({ item }: any) {
 
         case 'follow-request':
             text = 'Seni takip etmek istiyor';
+            break;
+
+        default:
+            text = <i>Bildirim yüklenirken bir hata meydana geldi</i>;
             break;
     }
 
@@ -190,7 +140,7 @@ function Notification({ item }: any) {
                 </div>
                 <div className="notification-content">
                     <span>{text}</span>
-                    {embed !== undefined && <div dangerouslySetInnerHTML={{ __html: embed }} />}
+                    {embed}
                 </div>
                 <div className="date">
                     <span>{item.details.date.text}</span>
