@@ -17,14 +17,15 @@ function Header() {
     let typingTimer: any;
     let doneTypingInterval: number = 500;
 
-    function handleArrowKeys(event: any): void {
-        const addSelected = (count: number) => {
-            selectAll('.search-result-other')
-                .forEach(item => item.classList.remove('search-result-selected'));
+    const addSelected = (count: number): void => {
+        selectAll('.search-result-other')
+            .forEach(item => item.classList.remove('search-result-selected'));
 
-            if (selectAll('.search-result-other')[count - 1])
-                selectAll('.search-result-other')[count - 1].classList.add('search-result-selected');
-        }
+        if (selectAll('.search-result-other')[count - 1])
+            selectAll('.search-result-other')[count - 1].classList.add('search-result-selected');
+    }
+
+    const handleArrowKeys = (event: any): void  => {
         const keyCode: number = event.keyCode;
         const items = selectAll('.search-result-other');
 
@@ -45,9 +46,11 @@ function Header() {
             selectedItem++;
             addSelected(Math.abs(selectedItem));
         }
+
+        event.preventDefault();
     }
 
-    function handleSearch(event: any): void {
+    const handleSearch = (event: any): void => {
         const value = event.target.value;
         const dropdown = select(".search-dropdown");
 
@@ -59,10 +62,13 @@ function Header() {
             }, 100);
 
             typingTimer = setTimeout(() => {
-                selectedItem = 0;
+                selectedItem = 1;
+                addSelected(1);
                 setQuery(value)
             }, doneTypingInterval);
         }
+
+        event.preventDefault();
     }
 
     return (
