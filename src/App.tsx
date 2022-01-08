@@ -64,7 +64,7 @@ function App() {
             });
 
             selectAll('.dropdown-container').forEach(menu => {
-                if (!menu.contains(e.target) && menu.style.display == 'flex') {
+                if (!menu.contains(e.target) && menu.style.display == 'flex' && e.target.nodeName !== "INPUT") {
                     let hideAnimation = (menu.classList.contains('search-dropdown') ? 'search-' : '') + 'dropdown-hide';
                     menu.classList.add(hideAnimation);
 
